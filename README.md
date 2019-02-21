@@ -19,6 +19,8 @@ install.packages("dagtex")
 This is a basic example which shows you how to solve a common problem:
 
 ``` r
+texPreview::tex_opts$set(returnType='html')
+
 library(dagtex)
 
 dagtex() %>% 
@@ -26,7 +28,11 @@ dagtex() %>%
   add_node("y") %>% 
   add_edge("x", "y", is_curved = TRUE) %>% 
   plot()
-#> NULL
+```
+
+<img src="man/figures/README-example-1.png" width="100%" />
+
+``` r
 
 dagtex() %>% 
   add_node("u1") %>% 
@@ -44,5 +50,6 @@ dagtex() %>%
   add_edge("u3", "a", start_position = "north", end_position = "south") %>% 
   add_edge("u3", "y", start_position = "north", end_position = "south") %>% 
   plot()
-#> NULL
 ```
+
+<img src="man/figures/README-example-2.png" width="100%" />
