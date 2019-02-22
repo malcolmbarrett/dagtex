@@ -129,7 +129,7 @@ compile_node_options <- function(.node) {
 
 latexify_swig <- function(.node) {
 
-  node_options <- paste0("[", .node$id, "]")
+  node_options <- paste0("[", .node$options, "]")
   if (node_options == "[]") node_options <- ""
   node_id <- paste0("(", .node$id, ")")
   node_text <- paste0("{", .node$name, "}")
