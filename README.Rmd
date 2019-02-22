@@ -9,7 +9,7 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
   fig.path = "man/figures/README-",
-  out.width = "100%"
+  out.width = "25%"
 )
 
 library(dplyr)
@@ -32,12 +32,14 @@ install.packages("dagtex")
 This is a basic example which shows you how to solve a common problem:
 
 ```{r example}
+texPreview::tex_opts$set(returnType='html')
+
 library(dagtex)
 
 dagtex() %>% 
   add_node("x") %>% 
   add_node("y") %>% 
-  add_edge("x", "y", is_curved = TRUE) %>% 
+  add_edge("x", "y", is_curved = TRUE)%>%
   plot()
 
 dagtex() %>% 
