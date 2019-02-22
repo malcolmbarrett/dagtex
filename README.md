@@ -26,11 +26,11 @@ library(dagtex)
 dagtex() %>% 
   add_node("x") %>% 
   add_node("y") %>% 
-  add_edge("x", "y", is_curved = TRUE) %>% 
+  add_edge("x", "y", is_curved = TRUE)%>%
   plot()
 ```
 
-<img src="man/figures/README-example-1.png" width="100%" />
+<img src="man/figures/README-example-1.png" width="25%" />
 
 ``` r
 
@@ -52,4 +52,4 @@ dagtex() %>%
   plot()
 ```
 
-<img src="man/figures/README-example-2.png" width="100%" />
+<img src="man/figures/README-example-2.png" width="25%" />

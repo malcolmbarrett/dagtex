@@ -9,7 +9,7 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
   fig.path = "man/figures/README-",
-  out.width = "100%"
+  out.width = "25%"
 )
 
 library(dplyr)
@@ -39,7 +39,7 @@ library(dagtex)
 dagtex() %>% 
   add_node("x") %>% 
   add_node("y") %>% 
-  add_edge("x", "y", is_curved = TRUE) %>% 
+  add_edge("x", "y", is_curved = TRUE)%>%
   plot()
 
 dagtex() %>% 
