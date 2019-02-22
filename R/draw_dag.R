@@ -1,8 +1,20 @@
+#' Plot DAGs
+#'
+#' @param .dag
+#' @param density
+#' @param ...
+#'
+#' @return
+#' @export
+#'
+#' @examples
 plot_dagtex <- function(.dag, density = 320, ...) {
 
   latex_code <- get_latex_code(.dag, add_header = FALSE)
 
   if (knitr::is_latex_output()) return(knitr::asis_output(latex_code))
+
+  is_knit_image <- isTRUE(getOption("knitr.in.progress"))
 
   tikz_opts <- '\\usetikzlibrary{positioning, calc, shapes.geometric,
   shapes.multipart, shapes, arrows.meta, arrows, decorations.markings,
@@ -10,14 +22,14 @@ plot_dagtex <- function(.dag, density = 320, ...) {
 
   pkg_opts <- texPreview::build_usepackage(pkg = 'tikz', uselibrary = tikz_opts)
 
-  if (knitr::is_html_output()) {
+  if (is_knit_image) {
     return(
       texPreview::tex_preview(
         latex_code,
         usrPackages = pkg_opts,
         density = density,
         resizebox = FALSE,
-        returnType = "html5",
+        returnType = "html",
         ...)
     )
   }
@@ -29,16 +41,57 @@ plot_dagtex <- function(.dag, density = 320, ...) {
     ...)
 }
 
-plot.dagtex <- function(...) {
-  plot_dagtex(...)
+#' Explicitly draw DAG
+#'
+#' @param x
+#'
+#' @param ...
+#'
+#' @export
+#' @method print dagtex
+print.dagtex <- function(x, ...) {
+  nodes_and_edges <- x[c("nodes", "edges")]
+  is_empty_dag <- all(purrr::map_lgl(nodes_and_edges, purrr::is_empty))
+
+  if (is_empty_dag) {
+    cat("An empty DAG")
+    return(invisible(x))
+  }
+
+  #  wrap in print for print.magick-image when obj is HTML
+  print(plot_dagtex(x, ...), info = FALSE)
 }
 
+#' @export
+#' @method plot dagtex
+plot.dagtex <- print.dagtex
+
+#' Insert LaTeX
+#'
+#' @param .dag
+#' @param ...
+#'
+#' @return
+#' @export
+#'
+#' @examples
 insert_latex <- function(.dag, ...) {
   .dag$latex <- c(.dag$latex, ...)
 
   .dag
 }
 
+#' Create tikz picture
+#'
+#' @param ...
+#' @param scale
+#' @param scale_x
+#' @param scale_y
+#'
+#' @return
+#' @export
+#'
+#' @examples
 tikz_picture <- function(..., scale = NULL, scale_x = NULL, scale_y = NULL) {
   # TODO: should just be options?
   dag_scale <- paste0(
@@ -67,6 +120,15 @@ tikz_picture <- function(..., scale = NULL, scale_x = NULL, scale_y = NULL) {
   )
 }
 
+#' Get LaTeX code
+#'
+#' @param .dag
+#' @param add_header
+#'
+#' @return
+#' @export
+#'
+#' @examples
 get_latex_code <- function(.dag, add_header = TRUE) {
 
   latex_code <- tikz_picture(latexify_dag(.dag))

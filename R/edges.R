@@ -1,3 +1,24 @@
+#' Add edges
+#'
+#' @param .dag
+#' @param .from
+#' @param .to
+#' @param start_position
+#' @param end_position
+#' @param .options
+#' @param is_curved
+#' @param curve
+#' @param is_double_arrow
+#' @param linetype
+#' @param annotate
+#' @param ...
+#'
+#' @return
+#' @export
+#'
+#' @examples
+#'
+#' @rdname add_edges
 add_edge <- function(.dag, .from, .to, start_position = NULL, end_position = NULL,
                      .options = NULL, is_curved = FALSE, curve = "up",
                      is_double_arrow = FALSE, linetype = "solid",
@@ -24,6 +45,8 @@ add_edge <- function(.dag, .from, .to, start_position = NULL, end_position = NUL
   )
 }
 
+#' @export
+#' @rdname add_nodes
 add_curved_edge <- function(.dag, .from, .to, start_position = NULL, end_position = NULL,
                      .options = NULL, curve = "up",
                      is_double_arrow = FALSE, linetype = "solid",
@@ -64,6 +87,9 @@ add_edge_to_dag <- function(.dag, .id, .from, .to, start_position = NULL,
   .dag
 }
 
+
+#' @export
+#' @rdname add_nodes
 annotate_edge <- function(text, placement = "midway", position = "above") {
   paste0("node[", placement, ", ", position, "]{", text, "}")
 }

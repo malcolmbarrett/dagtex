@@ -1,0 +1,8 @@
+\begin{tikzpicture}
+\tikzset{>=latex}
+\tikzstyle{Arrow} = [->, thick, preaction = {decorate}]
+\tikzstyle{DoubleArrow} = [<->, thick, preaction = {decorate}]
+\node(1) {x};
+\node[right =of 1] (2) {y};
+\draw[Arrow] (1) to [out=25, in=160] (2);
+\end{tikzpicture}

@@ -1,3 +1,24 @@
+#' Add nodes
+#'
+#' @param .dag
+#' @param .name
+#' @param .options
+#' @param x
+#' @param y
+#' @param right_of
+#' @param left_of
+#' @param above
+#' @param below
+#' @param shape
+#' @param is_swig
+#' @param ...
+#'
+#' @return
+#' @export
+#'
+#' @examples
+#'
+#' @rdname add_nodes
 add_node <- function(.dag, .name, .options = NULL, x = NULL, y = NULL,
                      right_of = NULL, left_of = NULL,
                      above = NULL, below = NULL, shape = NULL, is_swig = FALSE,
@@ -32,6 +53,9 @@ add_node <- function(.dag, .name, .options = NULL, x = NULL, y = NULL,
   )
 }
 
+
+#' @export
+#' @rdname add_nodes
 add_swig_node <- function(.dag, .left, .right, .options = NULL, x = NULL, y = NULL,
                           right_of = NULL, left_of = NULL,
                           above = NULL, below = NULL, shape = NULL, ...) {

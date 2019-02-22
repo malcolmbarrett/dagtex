@@ -24,8 +24,7 @@ library(dagtex)
 dagtex() %>% 
   add_node("x") %>% 
   add_node("y") %>% 
-  add_edge("x", "y", is_curved = TRUE) %>%
-  plot()
+  add_edge("x", "y", is_curved = TRUE)
 ```
 
 <img src="man/figures/README-example-1.png" width="35%" />
@@ -37,8 +36,8 @@ dagtex() %>%
   add_node("l") %>% 
   add_node("a") %>% 
   add_node("y") %>% 
-  add_node("u2", below = 1) %>% 
-  add_node("u3", below = 2) %>% 
+  add_node("u2", below = "u1") %>% 
+  add_node("u3", below = "l") %>% 
   add_edge("u1", "l") %>% 
   add_edge("l", "a") %>% 
   add_edge("u1", "y", is_curved = TRUE, annotate = annotate_edge("wow")) %>% 
@@ -46,8 +45,7 @@ dagtex() %>%
   add_edge("u2", "l", start_position = "north", end_position = "south") %>% 
   add_edge("u2", "a", start_position = "north", end_position = "south") %>% 
   add_edge("u3", "a", start_position = "north", end_position = "south") %>% 
-  add_edge("u3", "y", start_position = "north", end_position = "south") %>% 
-  plot()
+  add_edge("u3", "y", start_position = "north", end_position = "south")
 ```
 
 <img src="man/figures/README-example-2.png" width="35%" />
