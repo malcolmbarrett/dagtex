@@ -19,18 +19,16 @@ install.packages("dagtex")
 This is a basic example which shows you how to solve a common problem:
 
 ``` r
-texPreview::tex_opts$set(returnType='html')
-
 library(dagtex)
 
 dagtex() %>% 
   add_node("x") %>% 
   add_node("y") %>% 
-  add_edge("x", "y", is_curved = TRUE)%>%
+  add_edge("x", "y", is_curved = TRUE) %>%
   plot()
 ```
 
-<img src="man/figures/README-example-1.png" width="25%" />
+<img src="man/figures/README-example-1.png" width="35%" />
 
 ``` r
 
@@ -52,4 +50,4 @@ dagtex() %>%
   plot()
 ```
 
-<img src="man/figures/README-example-2.png" width="25%" />
+<img src="man/figures/README-example-2.png" width="35%" />
