@@ -149,6 +149,29 @@ print.latex_code <- function(x, ...) {
   cat(x, ...)
 }
 
+#' Get standalone TikZ code
+#'
+#' Generate LaTeX code that can be used in a tikz knitr chunk, or in a LaTeX
+#' document using the standalone class.
+#'
+#' @param .dag
+#'
+#' @return
+#' @export
+#'
+#' @examples
+get_tikz_code <- function(.dag) {
+
+  tikz_code <- tikz_picture(latexify_dag(.dag))
+
+  tikz_opts <- '\\usetikzlibrary{positioning, calc, shapes.geometric,
+    shapes.multipart, shapes, arrows.meta, arrows, decorations.markings, trees}'
+
+  tikz_code <- paste(c(tikz_opts, tikz_code), collapse = "\n")
+
+  structure(tikz_code, class = "latex_code")
+}
+
 latexify_dag <- function(.dag) {
   if (any_swig_nodes(.dag)) {}
   nodes_latex <- purrr::map_chr(.dag$nodes, latexify_node)
