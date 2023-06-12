@@ -3,15 +3,16 @@
 
 # dagtex
 
-The goal of dagtex is to …
+The goal of dagtex is to to create tikz DAGs from R. Under very early
+development and a bit of neglect.
 
 ## Installation
 
-You can install the released version of dagtex from
-[CRAN](https://CRAN.R-project.org) with:
+You can install the development version of dagtex from GitHub with:
 
 ``` r
-install.packages("dagtex")
+# install.packages("remotes")
+remotes::install_github("malcolmbarrett/dagtex")
 ```
 
 ## Example
